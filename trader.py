@@ -27,12 +27,16 @@ class Trader:
         try:
             res = self.market.getExchangeOrdersRateByAmount(type="sell", amount=self.volume[p[0]], pair=pair)
             self.balance[p[1]] += res["price"]
+            self.volume[p[0]] = 0
             self.rate["btc"] = res["rate"]
         except:
             pass
 
     def getRate(self, pair="btc_jpy"):
-        return self.market.getRate(pair)
+        try:
+            return self.market.getRate(pair)
+        except:
+            return -1
 
     def test(self):
         print(self.market.getTicker())

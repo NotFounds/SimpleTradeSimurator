@@ -43,7 +43,7 @@ class CoinCheck(MarketPlace):
 
     def getExchangeOrdersRateByAmount(self, type, amount, pair="btc_jpy", raw_data=False):
         obj = super().get("/api/exchange/orders/rate?order_type={type}&amount={amount}&pair={pair}".format(**locals()))
-        return { "rate": float(obj["rate"]), "amount": float(obj["amount"]), "price": float(obj["rate"]) } if not raw_data else obj
+        return { "rate": float(obj["rate"]), "amount": float(obj["amount"]), "price": float(obj["price"]) } if not raw_data else obj
 
     def getExchangeOrdersRateByPrice(self, type, price, pair="btc_jpy", raw_data=False):
         obj = super().get("/api/exchange/orders/rate?order_type={type}&price={price}&pair={pair}".format(**locals()))
